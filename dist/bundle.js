@@ -106,7 +106,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\nconst title1 = document.createElement(\"h1\");\ntitle1.innerText = \"Hello\";\ntitle1.classList.add(\"hello\");\n\nconsole.log(document.body);\n\ndocument.body.appendChild(title1);\n\n\n//# sourceURL=webpack://todo-list-project/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\nconst title1 = document.createElement(\"h1\");\ntitle1.innerText = \"Hello\";\ntitle1.classList.add(\"hello\");\n\ndocument.body.appendChild(title1);\n\n\n//# sourceURL=webpack://todo-list-project/./src/index.js?");
 
 /***/ })
 

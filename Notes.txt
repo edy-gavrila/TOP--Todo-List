@@ -1,0 +1,9 @@
+This folder contains the starting structure for a typical project using webpack
+
+By default, webpack is preconfigured with a  css loader and asset loader. This template should work for most web development projects.
+
+How to use:
+1. Copy this folder to your new working folder
+2. Run NPM Install
+3. Run Git init 
+
