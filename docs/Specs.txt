@@ -1,0 +1,23 @@
+Spec for todo app:
+
+Name: Taskapp
+
+1. Todo Itmes:
+
+Todo items should have the following properties:
+Title
+Description
+Due Date
+Priority - highlighted by colour
+Category 
+
+2. Todo Projects
+Each todo project should have a Title
+Each todo project should have a list of todos
+
+
+3. App:
+
+The app should have a sidebar for viewing projects
+When selecting a project, you should see a list of tasks loaded into the main area
+Each project should have a VScode style list of buttons that appears when hovering

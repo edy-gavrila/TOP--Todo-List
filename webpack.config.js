@@ -12,7 +12,8 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Do",
+      title: "Taskapp",
+      template: "src/index.html",
     }),
   ],
 

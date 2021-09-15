@@ -1,6 +1,4 @@
+import "bootstrap";
 import "./style.css";
-const title1 = document.createElement("h1");
-title1.innerText = "Hello world";
-title1.classList.add("hello");
+import "bootstrap/dist/css/bootstrap.min.css";
 
-document.body.appendChild(title1);
