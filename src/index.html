@@ -8,11 +8,12 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="container-fluid">
         <div>
           <a class="navbar-brand" href="#"
-            ><img src="../assets/appicon.png" alt="icon"
+            ><img id="appicon" src="" alt="icon" height="32px" width="auto"
           /></a>
           <a class="navbar-brand" href="#">Taskapp</a>
         </div>
@@ -30,10 +31,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Inbox</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Today</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">This Week</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -44,40 +48,51 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Projects
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Code</a></li>
+                <li><a class="dropdown-item" href="#">Learn</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">...Add New Project</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-                >Disabled</a
-              >
-            </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
+
+    <div class="container-fluid main-container p-3">
+      <!--Sidebar container-->
+      <div class="row">
+        <div class="col-4 col-lg-3 col-xl-2 d-grid border">
+          <div class="d-flex flex-column">
+             <button class="btn sidebar-btn my-1 active">
+            <i class="bi bi-inboxes-fill"></i>&nbsp;Inbox
+          </button>
+          <button class="btn sidebar-btn my-1">
+            <i class="bi bi-calendar-event"></i></i>&nbsp;Today
+          </button>
+          <button class="btn sidebar-btn my-1">
+            <i class="bi bi-calendar2"></i></i>&nbsp;This Week
+          </button>
+          
+          <div class="d-grid" id="projects-container">
+            
+            <h2 class="my-3">Projects</h2>
+            <ul id = "project-list"></ul>
+            <button id="add-project-button" class="btn add-project-btn"><i class="bi bi-plus-lg"></i>&nbsp;Add Project</button>
+          </div>
+        </div>
+        </div>
+
+        <!--Tasks container-->
+        <div class="col border border-primary" id="task-cards-container">
+          
+        </div>
+      </div>
+    </div>
   </body>
 </html>

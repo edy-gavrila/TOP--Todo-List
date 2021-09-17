@@ -1,3 +1,63 @@
-.hello {
-  color: red;
+.main-container {
+  height: calc(100vh - 100px);
+}
+
+.sidebar-btn {
+  text-align: left !important;
+}
+
+.active {
+  background-color: rgb(208, 216, 224) !important;
+  font-weight: bold;
+}
+
+.sidebar-btn:hover {
+  background-color: rgb(208, 216, 224);
+}
+
+.add-project-btn:hover {
+  background-color: rgb(208, 216, 224);
+}
+
+.invisible {
+  display: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.project-list-item {
+  position: relative;
+  list-style-type: none;
+  text-align: left;
+  padding: 5px;
+  background-color: rgb(245, 245, 245);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.project-list-item:hover {
+  background-color: rgb(208, 216, 224);
+}
+
+.project-list-item .delete-project-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.project-list-item .delete-project-btn:hover {
+  transform: scale(1.1);
+}
+
+.project-list-item:hover .delete-project-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  display: inline-block;
 }
