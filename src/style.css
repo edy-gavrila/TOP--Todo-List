@@ -15,7 +15,8 @@
   background-color: rgb(208, 216, 224);
 }
 
-.add-project-btn:hover {
+.add-project-btn:hover,
+.add-task-btn:hover {
   background-color: rgb(208, 216, 224);
 }
 

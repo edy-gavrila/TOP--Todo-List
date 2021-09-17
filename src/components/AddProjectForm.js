@@ -24,12 +24,12 @@ const AddProjectForm = () => {
 
   addProjectForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("Submitting");
     const projectTitleInput = document.getElementById("projectTitle");
     const newProjectTitle = projectTitleInput.value;
 
     const projectToAdd = new Project(newProjectTitle);
     LocalStorage.addProjectToLocalStorage(projectToAdd);
+    projectTitleInput.value = "";
 
     UI.loadProjects();
   });

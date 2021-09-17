@@ -1,7 +1,7 @@
 const TaskCard = (project) => {
-  const TaskCard = document.createElement("div");
-  TaskCard.classList.add("card");
-  TaskCard.innerHTML = `
+  const taskCard = document.createElement("div");
+  taskCard.classList.add("card");
+  taskCard.innerHTML = `
     <div class="card-header">
     ${project.title}
   </div>
@@ -11,4 +11,6 @@ const TaskCard = (project) => {
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
     `;
+
+  return { taskCard };
 };

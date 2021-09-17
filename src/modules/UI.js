@@ -1,13 +1,18 @@
 import AddProjectForm from "../components/AddProjectForm";
 import LocalStorage from "./LocalStorage";
+import ProjectList from "../components/ProjectList";
+import AddTaskForm from "../components/AddTaskForm";
 
 const UI = (() => {
   const sideBarButtons = document.querySelectorAll(".sidebar-btn");
   const addProjectButton = document.getElementById("add-project-button");
   const projectsContainer = document.getElementById("projects-container");
-  const projectList = document.getElementById("project-list");
+  const projectListContainer = document.getElementById(
+    "project-list-container"
+  );
   const taskCardsContainer = document.getElementById("task-cards-container");
   const { addProjectForm } = AddProjectForm();
+  const { addTaskForm } = AddTaskForm();
 
   let selectedProject = null;
   let projects = null;
@@ -33,6 +38,17 @@ const UI = (() => {
     }
   };
 
+  //removes the add task form
+  const removeAddTaskForm = () => {
+    if (addTaskForm) {
+      addTaskForm.remove();
+    }
+    const addTaskButton = document.querySelector(".add-task-btn");
+    if (addTaskButton) {
+      addTaskButton.classList.remove("invisible");
+    }
+  };
+
   //displays the add project form
   const displayAddProjectForm = () => {
     addProjectButton.classList.add("invisible");
@@ -42,47 +58,54 @@ const UI = (() => {
     cancelButton.addEventListener("click", removeAddProjectForm);
   };
 
-  addProjectButton.addEventListener("click", displayAddProjectForm);
-
   //load projects from local storage and display them in the sidebar
   const loadProjects = () => {
-    projectList.innerHTML = "";
+    projectListContainer.innerHTML = "";
     projects = LocalStorage.loadProjectsFromLocalStorage();
-    if (!projects) {
-      return;
-    }
-    projects.forEach((project) => {
-      const projectListItem = document.createElement("li");
-      projectListItem.classList.add("project-list-item");
-      projectListItem.innerHTML = `<i class="bi bi-list-check"></i>&nbsp;${project.title}<button class="delete-project-btn"><i class="bi bi-x"></i></button>`;
-      projectListItem.addEventListener("click", () => {
-        displayProject(project.id);
-      });
-      projectList.appendChild(projectListItem);
-    });
-    selectedProject = projects[0];
+    const { projectList } = ProjectList(projects);
+    projectListContainer.appendChild(projectList);
   };
 
   //display project details
-  const displayProject = (id) => {
-    if (!projects) {
+  const displayProject = (project) => {
+    if (!project) {
       return;
     }
-    const projectToDisplay = projects.find((el) => el.id === id);
-
+    selectedProject = project;
     taskCardsContainer.innerHTML = `
-    <div class="p-5">
-    <h1>${projectToDisplay.title}</h1>
+    <div >
+      <h1 class="mb-0">${project.title}</h1> 
+      <small>Date Created: ${project.dateCreated}</small>
+
     </div>
-    
     `;
-
-
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("btn", "add-task-btn");
+    addTaskButton.innerHTML = `<i class="bi bi-plus-lg"></i> Add Task`;
+    addTaskButton.addEventListener("click", displayAddTaskForm);
+    taskCardsContainer.appendChild(addTaskButton);
+    console.log(selectedProject);
   };
 
-  const displayTasks = (tasks) => {};
+  const displayAddTaskForm = () => {
+    const addTaskButton = document.querySelector(".add-task-btn");
+    addTaskButton.classList.add("invisible");
 
-  return { displayAddProjectForm, displayTasks, loadProjects };
+    taskCardsContainer.appendChild(addTaskForm);
+    const cancelButton = document.getElementById("cancel-add-task-form");
+    cancelButton.addEventListener("click", removeAddTaskForm);
+  };
+
+  addProjectButton.addEventListener("click", displayAddProjectForm);
+
+  const getSelectedProject = () => selectedProject;
+
+  return {
+    displayAddProjectForm,
+    loadProjects,
+    displayProject,
+    getSelectedProject,
+  };
 })();
 
 export default UI;

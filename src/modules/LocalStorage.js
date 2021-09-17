@@ -4,12 +4,10 @@ const PROJECTS = "Projects";
 const LocalStorage = (() => {
   const addProjectToLocalStorage = (project) => {
     let storedProjects = loadProjectsFromLocalStorage();
-    console.log(storedProjects);
     if (!storedProjects) {
       storedProjects = [];
     }
     storedProjects.push(project);
-
     localStorage.setItem(PROJECTS, JSON.stringify(storedProjects));
   };
 
@@ -21,7 +19,22 @@ const LocalStorage = (() => {
     );
   };
 
-  return { addProjectToLocalStorage, loadProjectsFromLocalStorage };
+  const removeProjectFromLocalStorage = (project) => {
+    const storedProjects = loadProjectsFromLocalStorage();
+    if (!storedProjects) {
+      return;
+    }
+    const updatesStoredProjects = storedProjects.filter(
+      (element) => element.id !== project.id
+    );
+    localStorage.setItem(PROJECTS, JSON.stringify(updatesStoredProjects));
+  };
+
+  return {
+    addProjectToLocalStorage,
+    loadProjectsFromLocalStorage,
+    removeProjectFromLocalStorage,
+  };
 })();
 
 export default LocalStorage;
