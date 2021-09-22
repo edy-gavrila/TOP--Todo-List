@@ -10,6 +10,6 @@ import UI from "./modules/UI";
 import appicon from "./assets/appicon.png";
 document.getElementById("appicon").src = appicon;
 
-
 //load projects
+UI.initializeInterface();
 UI.loadProjects();

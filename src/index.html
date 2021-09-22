@@ -8,6 +8,8 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
+    <!--Backdrop Container-->
+    <div id="backdropContainer"></div>
     <!--Navigation Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="container-fluid">
@@ -34,10 +36,10 @@
               <a class="nav-link " aria-current="page" href="#">Inbox</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Today</a>
+              <a class="nav-link" href="#">Due Today</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">This Week</a>
+              <a class="nav-link" href="#">Due This Week</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -64,19 +66,19 @@
       </div>
     </nav>
 
-    <div class="container-fluid main-container p-3">
+    <div class="container-fluid main-container py-3 border">
       <!--Sidebar container-->
       <div class="row">
-        <div class="col-4 col-lg-3 col-xl-2 d-grid border">
+        <div class="d-none d-sm-block col-0 col-sm-4 col-lg-3 col-xl-2 d-grid ">
           <div class="d-flex flex-column">
-             <button class="btn sidebar-btn my-1 active">
+             <button class="btn sidebar-btn my-1 active" id="inbox">
             <i class="bi bi-inboxes-fill"></i>&nbsp;Inbox
           </button>
-          <button class="btn sidebar-btn my-1">
-            <i class="bi bi-calendar-event"></i></i>&nbsp;Today
+          <button class="btn sidebar-btn my-1" id = "today">
+            <i class="bi bi-calendar-event"></i></i>&nbsp;Due Today
           </button>
-          <button class="btn sidebar-btn my-1">
-            <i class="bi bi-calendar2"></i></i>&nbsp;This Week
+          <button class="btn sidebar-btn my-1" id="week">
+            <i class="bi bi-calendar2"></i></i>&nbsp;Due This Week
           </button>
           
           <div class="d-grid" id="projects-container">
@@ -90,7 +92,7 @@
         </div>
 
         <!--Tasks container-->
-        <div class="col border border-primary p-5" id="task-cards-container">
+        <div class="col p-1 p-sm-3 p-md-5 my-3 " id="task-cards-container">
           
         </div>
       </div>

@@ -8,12 +8,16 @@ const ProjectList = (projects) => {
   if (projects.length === 0) {
     return { projectList };
   }
-  projectList = document.createElement("ul");
+  projects = projects.filter((proj) => proj.id !== "inbox");
+  projectList = document.createElement("div");
+  projectList.classList.add("d-flex", "flex-column");
 
   projects.forEach((project) => {
-    const projectListItem = document.createElement("li");
-    projectListItem.classList.add("project-list-item");
-    projectListItem.innerHTML = `<i class="bi bi-list-check"></i>&nbsp;${project.title}`;
+    const projectListItem = document.createElement("button");
+    projectListItem.classList.add("btn", "sidebar-btn", "my-1");
+    projectListItem.innerHTML = `
+
+    <i class="bi bi-list-check"></i>&nbsp;${project.title}`;
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-project-btn");
@@ -23,6 +27,7 @@ const ProjectList = (projects) => {
       e.stopPropagation();
       LocalStorage.removeProjectFromLocalStorage(project);
       UI.loadProjects();
+      UI.displayProject(LocalStorage.getProjectFromLocalStorage("inbox"));
     });
 
     projectListItem.appendChild(deleteButton);

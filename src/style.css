@@ -3,6 +3,7 @@
 }
 
 .sidebar-btn {
+  position: relative;
   text-align: left !important;
 }
 
@@ -28,37 +29,122 @@ ul {
   padding-left: 0;
 }
 
-.project-list-item {
-  position: relative;
-  list-style-type: none;
-  text-align: left;
-  padding: 5px;
-  background-color: rgb(245, 245, 245);
-  margin-bottom: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.project-list-item:hover {
+.sidebar-btn:hover {
   background-color: rgb(208, 216, 224);
 }
 
-.project-list-item .delete-project-btn {
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  right: 0;
+.sidebar-btn .delete-project-btn {
   display: none;
 }
 
-.project-list-item .delete-project-btn:hover {
+.sidebar-btn .delete-project-btn:hover {
   transform: scale(1.1);
 }
 
-.project-list-item:hover .delete-project-btn {
+.sidebar-btn:hover .delete-project-btn {
   border: none;
   background-color: transparent;
   position: absolute;
   right: 0;
+  top: 5px;
   display: inline-block;
+}
+
+.task-card {
+  position: relative;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  color: white;
+}
+
+.task-number {
+  font-style: italic;
+  margin-top: 1rem;
+  margin-left: 3rem;
+  max-width: 70%;
+}
+
+.task-completed-mark {
+  position: absolute;
+  color: greenyellow;
+  top: 10px;
+  left: 1rem;
+  transform: scale(2);
+}
+
+.card-divider {
+  height: 2px;
+  margin: 0 1rem;
+  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
+}
+
+.task-text {
+  padding: 1rem;
+}
+
+.info-bubble {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+.task-completed-btn {
+  border-radius: 2rem !important;
+}
+
+.card-priority-high {
+  background-color: rgba(255, 0, 0, 0.671);
+}
+.card-priority-medium {
+  background-color: rgba(245, 134, 31, 0.671);
+}
+.card-priority-low {
+  background-color: rgba(77, 165, 82, 0.671);
+}
+
+.task-card .delete-task-btn {
+  display: none;
+}
+
+.task-card .edit-task-btn {
+  display: none;
+}
+
+.task-card:hover .edit-task-btn {
+  position: absolute;
+  right: 30px;
+  top: 7px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: inline-block;
+}
+.task-card:hover .delete-task-btn {
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: inline-block;
+}
+
+.edit-task-btn:hover,
+.delete-task-btn:hover {
+  transform: scale(1.1);
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal-form-card {
+  background-color: white;
+  
+
 }

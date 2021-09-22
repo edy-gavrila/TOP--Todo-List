@@ -1,21 +1,29 @@
-export const URGENT = "urgent";
-export const NORMAL = "normal";
-export const HIGH = "high";
-
 export default class Task {
   constructor(
-    id = Math.random(),
     title,
     description,
-    dateAdded = new Date(),
-    dueDate = "N/A",
-    priority = ""
+    dueDate,
+    priority,
+    id,
+    dateAdded = Date.now()
   ) {
-    this.id = id;
     this.title = title;
     this.description = description;
-    this.dateAdded = dateAdded;
     this.dueDate = dueDate;
     this.priority = priority;
+    if (id) {
+      this.id = id;
+    } else {
+      this.id = Math.random();
+    }
+    this.dateAdded = dateAdded;
+    this.completed = false;
+    this.projectId = null;
   }
+  markCompleted = () => {
+    this.completed = true;
+  };
+  markNotCompleted = () => {
+    this.completed = false;
+  };
 }
