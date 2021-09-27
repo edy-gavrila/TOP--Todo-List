@@ -1,5 +1,10 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .main-container {
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 110px);
 }
 
 .sidebar-btn {
@@ -135,16 +140,22 @@ ul {
 
 .backdrop {
   position: absolute;
-  top: 0;
   right: 0;
   left: 0;
-  bottom: 0;
+  height:100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
 }
 
 .modal-form-card {
   background-color: white;
-  
+}
 
+.footer {
+  height: 38px;
+  z-index: 99;
+}
+
+.footer-link {
+  transform: scale(1.2);
 }

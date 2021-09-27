@@ -27,11 +27,12 @@ const AddProjectForm = () => {
     const projectTitleInput = document.getElementById("projectTitle");
     const newProjectTitle = projectTitleInput.value;
 
-    const projectToAdd = new Project(newProjectTitle);
+    const projectToAdd = new Project(newProjectTitle, Math.random(), []);
     LocalStorage.addProjectToLocalStorage(projectToAdd);
     projectTitleInput.value = "";
 
     UI.loadProjects();
+    UI.closeModal();
   });
 
   return { addProjectForm };

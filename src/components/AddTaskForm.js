@@ -116,7 +116,6 @@ const AddTaskForm = (displayTitle, taskToUpdate) => {
 
     if (!taskToUpdate) {
       LocalStorage.addTaskToProject(UI.getSelectedProject(), newTask);
-      // UI.getSelectedProject().addTask(newTask);
     } else {
       newTask.id = taskToUpdate.id;
       newTask.dateAdded = taskToUpdate.dateAdded;
@@ -127,6 +126,7 @@ const AddTaskForm = (displayTitle, taskToUpdate) => {
       const backdropEl = document.getElementById("backdrop");
       if (backdropEl) {
         backdropEl.remove();
+        document.body.style.overflowY = "auto";
       }
     }
 

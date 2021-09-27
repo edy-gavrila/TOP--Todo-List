@@ -1,15 +1,9 @@
 import AddTaskForm from "./AddTaskForm";
+import Backdrop from "./Backdrop";
 
-const ModalForm = (taskToUpdate) => {
+const EditTaskModalForm = (taskToUpdate) => {
   const { addTaskForm } = AddTaskForm(false, taskToUpdate);
-  const backdrop = document.createElement("div");
-  backdrop.classList.add(
-    "backdrop",
-    "d-flex",
-    "flex-column",
-    "justify-content-center"
-  );
-  backdrop.setAttribute("id", "backdrop");
+  const { backdrop } = Backdrop();
 
   const formContainer = document.createElement("div");
   formContainer.classList.add(
@@ -26,23 +20,16 @@ const ModalForm = (taskToUpdate) => {
     "col-lg-6",
     "modal-form-card",
     "p-3",
+    "m-0",
     "rounded"
   );
   formColumn.appendChild(addTaskForm);
 
   formContainer.appendChild(formColumn);
-
-  document.body.style.overflow = "hidden";
   backdrop.appendChild(formContainer);
-  backdrop.addEventListener("click", (e) => {
-    if (e.target.id !== "backdrop") {
-      return;
-    }
-    backdrop.remove();
-    document.body.style.overflow = "scroll";
-  });
+  
 
-  return { modalForm: backdrop };
+  return { editTaskModalForm: backdrop };
 };
 
-export default ModalForm;
+export default EditTaskModalForm;

@@ -1,8 +1,6 @@
 import { differenceInHours, format, intervalToDuration } from "date-fns";
 import LocalStorage from "../modules/LocalStorage";
 import UI from "../modules/UI";
-import AddTaskForm from "./AddTaskForm";
-import ModalForm from "./ModalForm";
 
 const TaskCard = (task, number) => {
   const formattedDateAdded = format(
@@ -85,7 +83,7 @@ const TaskCard = (task, number) => {
   editBtn.classList.add("edit-task-btn");
   editBtn.innerHTML = "<i class='bi bi-pencil-square'></i>";
   editBtn.addEventListener("click", () => {
-    UI.displayFormModal(task);
+    UI.displayEditTaskFormModal(task);
   });
 
   taskCard.appendChild(editBtn);

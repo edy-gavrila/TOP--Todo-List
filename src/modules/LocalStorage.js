@@ -1,3 +1,4 @@
+import { addDays, format, isWithinInterval, subDays } from "date-fns";
 import Project from "../classes/Project";
 import Task from "../classes/Task";
 
@@ -19,6 +20,9 @@ const LocalStorage = (() => {
       return [];
     }
     return data.map((dataEl) => {
+      if (!dataEl.tasks) {
+        return[];
+      }
       const tasks = dataEl.tasks.map((taskEl) => {
         const newTask = new Task(
           taskEl.title,
@@ -116,6 +120,76 @@ const LocalStorage = (() => {
     localStorage.setItem(PROJECTS, JSON.stringify(savedProjects));
   };
 
+  //create a project made of tasks due to be completed today
+  const getTodayTasksProject = () => {
+    const todaysDate = format(Date.now(), "dd:MM");
+    let todaysTasks = [];
+    const allProjects = loadProjectsFromLocalStorage();
+    if (!allProjects) {
+      return null;
+    }
+    allProjects.forEach((project) => {
+      if (!project.tasks) {
+        return;
+      }
+      project.tasks.forEach((task) => {
+        if (todaysDate === format(new Date(task.dueDate), "dd:MM")) {
+          const newTask = new Task(
+            task.title,
+            task.description,
+            task.dueDate,
+            task.priority,
+            task.id,
+            task.dateAdded
+          );
+          newTask.completed = task.completed;
+          newTask.projectId = task.projectId;
+          todaysTasks.push(newTask);
+        }
+      });
+    });
+    return new Project("Today's Tasks", "today", todaysTasks);
+  };
+
+  //create a project of tasks due to be completed today.
+  const getThisWeekTasksProject = () => {
+    const thisWeekTasks = [];
+    let dayOfWeek = new Date(Date.now()).getDay();
+    if (dayOfWeek === 0) {
+      dayOfWeek = 6;
+    } else {
+      dayOfWeek -= 1;
+    }
+    const todaysDate = new Date(Date.now()).getDate();
+    const thisWeekDateInterval = {
+      start: subDays(Date.now(), dayOfWeek),
+      end: addDays(Date.now(), 6),
+    };
+
+    const allProjects = loadProjectsFromLocalStorage();
+    allProjects.forEach((project) => {
+      if (!project.tasks) {
+        return;
+      }
+      project.tasks.forEach((task) => {
+        if (isWithinInterval(new Date(task.dueDate), thisWeekDateInterval)) {
+          const newTask = new Task(
+            task.title,
+            task.description,
+            task.dueDate,
+            task.priority,
+            task.id,
+            task.dateAdded
+          );
+          newTask.completed = task.completed;
+          newTask.projectId = task.projectId;
+          thisWeekTasks.push(newTask);
+        }
+      });
+    });
+    return new Project("This Week's Tasks", "week", thisWeekTasks);
+  };
+
   return {
     addProjectToLocalStorage,
     loadProjectsFromLocalStorage,
@@ -124,6 +198,8 @@ const LocalStorage = (() => {
     deleteTask,
     getProjectFromLocalStorage,
     updateTask,
+    getTodayTasksProject,
+    getThisWeekTasksProject,
   };
 })();
 
