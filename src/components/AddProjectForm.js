@@ -32,7 +32,9 @@ const AddProjectForm = () => {
     projectTitleInput.value = "";
 
     UI.loadProjects();
+    UI.loadNavBarProjectsList();
     UI.closeModal();
+
   });
 
   return { addProjectForm };

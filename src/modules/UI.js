@@ -216,6 +216,11 @@ const UI = (() => {
     if (!projects) {
       return [];
     }
+    const navBarProjectsDropdown = document.getElementById(
+      "navBarProjectsDropDown"
+    );
+    navBarProjectsDropdown.innerHTML = "";
+
     const projectList = [];
     let inboxEl = document.createElement("li");
     inboxEl.innerHTML = `<a class="dropdown-item" href="#">Inbox</a>`;
@@ -245,9 +250,11 @@ const UI = (() => {
       projectList.push(listEl);
     });
 
-    const lineBreak2 = document.createElement("li");
-    lineBreak2.innerHTML = " <hr class='dropdown-divider' />";
-    projectList.push(lineBreak2);
+    if (projects.length > 0) {
+      const lineBreak2 = document.createElement("li");
+      lineBreak2.innerHTML = " <hr class='dropdown-divider' />";
+      projectList.push(lineBreak2);
+    }
 
     const addProjectLink = document.createElement("li");
     addProjectLink.innerHTML = `<a class="dropdown-item" href="#">...Add New Project</a>`;
@@ -256,10 +263,11 @@ const UI = (() => {
       console.log("Adding Project...");
       displayAddProjectModal();
     });
-
     projectList.push(addProjectLink);
 
-    return projectList;
+    projectList.forEach((listEl) => {
+      navBarProjectsDropdown.appendChild(listEl);
+    });
   };
 
   //Initial setup of the interface
@@ -270,10 +278,6 @@ const UI = (() => {
     const inboxNavLink = document.getElementById("navBarInboxLink");
     const dueTodayNavLink = document.getElementById("navBarDueTodayLink");
     const dueThisWeekNavLink = document.getElementById("navBarDueThisWeekLink");
-    const navBarProjectsDropdown = document.getElementById(
-      "navBarProjectsDropDown"
-    );
-    const projectList = loadNavBarProjectsList();
 
     inboxBtn.addEventListener("click", loadInboxProject);
     dueTodayBtn.addEventListener("click", loadTodaysTasks);
@@ -282,11 +286,8 @@ const UI = (() => {
     dueTodayNavLink.addEventListener("click", loadTodaysTasks);
     dueThisWeekNavLink.addEventListener("click", loadThisWeekTasks);
 
-    projectList.forEach((listEl) => {
-      navBarProjectsDropdown.appendChild(listEl);
-    });
-
     loadInboxProject();
+    loadNavBarProjectsList();
     addProjectButton.addEventListener("click", displayAddProjectForm);
   };
 
@@ -300,6 +301,7 @@ const UI = (() => {
     initializeInterface,
     displayEditTaskFormModal,
     closeModal,
+    loadNavBarProjectsList,
   };
 })();
 

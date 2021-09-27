@@ -28,6 +28,7 @@ const ProjectList = (projects) => {
       LocalStorage.removeProjectFromLocalStorage(project);
       UI.loadProjects();
       UI.displayProject(LocalStorage.getProjectFromLocalStorage("inbox"));
+      UI.loadNavBarProjectsList();
     });
 
     projectListItem.appendChild(deleteButton);
